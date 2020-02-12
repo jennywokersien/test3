@@ -1,0 +1,80 @@
+/*****************************************************************************************************/
+/*  Date	   Name	       Description                                                               */
+/*  ------------------------------------------------------------------------------------------------ */
+/*                                                                                                   */
+/*  1/16/2020  JWokersien  Initial deployment. Script to create EJ database.                         */
+/*****************************************************************************************************/
+
+DROP DATABASE IF EXISTS ejdesign;
+CREATE DATABASE ejdesign;
+USE ejdesign;
+
+#Create the employee table
+CREATE TABLE employee
+(
+	employeeID		INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	firstName		VARCHAR(255) NOT NULL,
+	lastName		VARCHAR(255) NOT NULL
+);
+
+#Create the visitor table
+CREATE TABLE IF NOT EXISTS visitor 
+(
+	visitorID 		INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	visitorName		VARCHAR(255) NOT NULL,
+	visitorEmail	VARCHAR(255) NOT NULL,
+	visitorMsg		VARCHAR(500) NOT NULL,
+	employeeID		INT NOT NULL  REFERENCES employee(employeeID)
+);
+
+#Insert employee rows
+INSERT INTO employee
+	(firstName, lastName)
+VALUES
+	('Buster', 'Bronco'),
+	('Joe', 'Vandal'),
+	('Aubie', 'Tiger'),
+	('Ralphie', 'Buffalo'),
+	('Bucky', 'Badger'),
+	('Cocky', 'Gamecock'),
+	('Sparty', 'Spartan'),
+	('Gus', 'Gorilla'),
+	('Sebastian', 'Ibis'),
+	('Brutus', 'Buckeye'),
+	('Pistol', 'Pete'),
+	('Archibald', 'Eagle'),
+	('Baby', 'Jay'),
+	('Big', 'Blue'),
+	('Boss', 'Hogg'),
+	('Buddy', 'Bronco'),
+	('Captain', 'Cane'),
+	('Duke', 'Dog'),
+	('Fighting', 'Pickle'),
+	('Benny', 'Bengal'),
+	('CWI', 'Otter');
+
+#Insert visitor rows	
+INSERT INTO visitor
+	(visitorName, visitorEmail, visitorMsg, employeeID)
+VALUES
+	('Mickey', 'mickey@mouse.com', 'Hello', 1),
+	('Minnie', 'minnie@me.com', 'hi', 1),
+	('Daisy', 'daisy@test.com', 'test message', 1),
+	('Donald', 'donald@me.com', 'duck', 1),
+	('Huey', 'huey@me.com', 'Lorem', 1),
+	('Dewey', 'dewey@me.com', 'Ipsum', 1),
+	('Louie', 'louie@yahoo.com', 'duck', 1),
+	('Elmer', 'elmer@me.com', 'Fudd', 1),
+	('Goofy', 'goofy@me.com', 'dog', 1),
+	('Winnie', 'winnie@me.com', 'The Pooh', 1),
+	('Pluto', 'pluto@me.com', 'XX', 1),
+	('Chip', 'chip@me.com', 'Disney', 1),
+	('Dale', 'dale@me.com', 'Resort', 1),
+	('Clarabelle', 'clara@me.com', 'me', 1),
+	('Scrooge', 'scrooge@me.com', 'McDuck', 1),
+	('Ludwig', 'lud@yahoo.com', 'Von Drake', 1),
+	('Max', 'max@me.com', 'Goof', 1),
+	('Mortimer', 'mort@me.com', 'Mouse', 1),
+	('Figaro', 'fig@gmail.com', 'The best site!', 1),
+	('Horace', 'horace@gmail.com', 'Horsecollar', 1);
+	
